@@ -17,5 +17,5 @@ To use this script, you need to change the values in muuttujat.txt to your own.
 
 # Dependences:
 
-Python
-[Poetry](https://python-poetry.org/docs/)
+- Python
+- [Poetry](https://python-poetry.org/docs/)
