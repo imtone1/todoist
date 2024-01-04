@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "todoist_api_app"
+version = "0.1.0"
+description = "Python app to add todos in todoist app"
+authors = ["Irina Tatti"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+requests = "^2.31.0"
+todoist-api-python = "^2.1.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
