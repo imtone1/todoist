@@ -15,6 +15,20 @@ To use this script, you need to change the values in muuttujat.txt to your own.
 
 2. Rename muuttujat.txt to muuttujat.py. This changes the file into a Python module that can be used in the script.
 
+## Activate the virtual environment
+
+Activate the virtual environment with a nested shell provided by Poetry:
+
+```powershell
+poetry shell
+```
+
+To deactivate the virtual environment, type:
+
+```powershell
+exit
+```
+
 # Dependences:
 
 - Python
