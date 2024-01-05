@@ -176,13 +176,11 @@ def check_if_str(task_id):
         return False
 
 def main():
-    
-    projects=get_all_projects(api_key)
-  
     # Adding tasks from csv file
     tasks = read_tasks_from_csv('./todoist_api/todoist_api_app/tasks_data.csv')
 
     subtasks= read_tasks_from_csv('./todoist_api/todoist_api_app/subtasks_data.csv')
+    projects=get_all_projects(api_key)
 
     for task in tasks:
         #check if project_id is a string. Means that user has given a project name.
@@ -192,6 +190,7 @@ def main():
         else:
             project_id = find_item_id(projects, "Inbox")
        
+       #Get all sections in the project
         sections=get_all_sections(api_key, project_id)
         section_id = find_item_id(sections, task.section_id)
         task.project_id = project_id

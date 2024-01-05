@@ -41,7 +41,7 @@ exit
 | `read_tasks_from_csv`    | Reads tasks from a CSV file and returns a list of Task objects. | `file_path` (str): Path to the CSV file.                     | List of Task objects.                          |
 | `check_if_str`           | Checks if the given `task_id` is a string.          | `task_id` (any): The `task_id` to check.                      | `True` if `task_id` is a string, otherwise `False`. |
 
-
+![diagram](diagram.drawio.svg)
 
 # Dependences:
 
