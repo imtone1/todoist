@@ -29,6 +29,18 @@ To deactivate the virtual environment, type:
 exit
 ```
 
+# Functions
+
+| Function Name          | Description                                                         | Parameters                           | Returns                                        |
+|------------------------|---------------------------------------------------------------------|--------------------------------------|------------------------------------------------|
+| `get_all_projects`     | Retrieves all projects from Todoist.                                | `api_key`                            | List of Project objects                        |
+| `get_one_project`      | Fetches a specific project by its ID.                               | `api_key`, `project_id`              | Project object or `None`                       |
+| `get_all_sections`     | Retrieves all sections within a specified project.                  | `api_key`, `project_id`              | List of Section objects or `None`              |
+| `add_new_task`         | Adds a new task to a project.                                       | `api_key`, `task`                    | Print added Task object or error message       |
+| `find_item_id`         | Finds an item (like a project or section) by name and returns its ID. | `items`, `item_name`               | Item ID or `None`                              |
+| `read_tasks_from_csv`  | Reads tasks from a CSV file and returns a list of Task objects.     | `file_path`                          | List of Task objects                           |
+
+
 # Dependences:
 
 - Python
