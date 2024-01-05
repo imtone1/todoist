@@ -38,7 +38,17 @@ def get_one_project(api_key, project_id):
     except Exception as error:
         print(error)
         return None
-    
+
+def get_all_sections(api_key, project_id):
+    """Gets all sections in a project. Returnes a json of Section items."""
+    try:
+        sections = api_key.get_sections(project_id=project_id)
+        print(sections)
+        return sections
+    except Exception as error:
+        print(error)
+        return None
+        
 def add_new_task(api_key, task):
     """Adds a new task to given project. Returnes a Task item."""
 
@@ -59,20 +69,21 @@ def add_new_task(api_key, task):
         print(error)
 
 ######################################################################################################## Helper functions
-def find_project(projects, project_name):
-    """Finds a project by name. Returnes a project id."""
+def find_item_id(items, item_name):
+    """Finds a item (e.g project or section) by name. Returnes a id of an item."""
     try:
-        for project in projects:
-            if project.name == project_name:
-                print(f"Found project: {project}")
-            #print(project)
-                return project.id
+        for item in items:
+            if item.name == item_name:
+                print(f"Found item: {item}")
+                #print(item)
+                return item.id
         return None
     except Exception as error:
         print(error)
         return None
     
 def read_tasks_from_csv(file_path):
+    """Reads tasks from csv file and returns a list of Task items."""
     tasks = []
     with open(file_path, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -93,8 +104,10 @@ def read_tasks_from_csv(file_path):
 
 def main():
     
-    # projects=get_all_projects(api_key)
-    # project_id = find_project(projects, "Inbox")
+    projects=get_all_projects(api_key)
+    project_id = find_item_id(projects, "Inbox")
+
+    get_all_sections(api_key, project_id)
     # task = Task(
     #     content="labels",
     #     description="dekaögsd",
@@ -105,13 +118,11 @@ def main():
     #     due_date="2024-01-06"
     #     )
   
-    
-    # Käytä tätä funktiota tiedostopolulla
-    tasks = read_tasks_from_csv('./todoist_api/todoist_api_app/task_data.csv')
-    print(tasks)
-    for task in tasks:
-
-        add_new_task(api_key, task)
+    # Adding tasks from csv file
+    # tasks = read_tasks_from_csv('./todoist_api/todoist_api_app/task_data.csv')
+    # print(tasks)
+    # for task in tasks:
+    #     add_new_task(api_key, task)
 
 if __name__ == "__main__":
     main()
