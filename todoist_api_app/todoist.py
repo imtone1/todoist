@@ -20,7 +20,15 @@ class Task:
 
 ######################################################################################################## API related functions
 def get_all_projects(api_key):
-    """Gets all projects. Returnes a list of Project items."""
+    """
+    Gets all projects.
+
+    Parameters:
+        - api_key (str): The API key used for authentication.
+
+    Returns:
+        list of objects: A list of Project items.
+    """
 
     try:
         projects = api_key.get_projects()
@@ -30,7 +38,16 @@ def get_all_projects(api_key):
         print(error)
 
 def get_one_project(api_key, project_id):
-    """Gets project object related to the given ID."""
+    """
+    Gets project object related to the given ID.
+
+    Parameters:
+        - api_key (str): The API key used for authentication.
+        - project_id (int): The ID of the project to retrieve.
+
+    Returns:
+    - object (Project): The project object related to the given ID, or None if an error occurs.
+    """
     try:
         project = api_key.get_project(project_id=project_id)
         #print(project)
@@ -50,7 +67,16 @@ def get_all_sections(api_key, project_id):
         return None
         
 def add_new_task(api_key, task):
-    """Adds a new task to given project. Returnes a Task item."""
+    """
+    Add a new task to Todoist.
+
+    Parameters:
+        - api_key (str): The API key used for authentication.
+        - task (Task): The task object containing the task details.
+
+    Returns:
+        Task: The added task object if successful, None otherwise.
+    """
 
     try:
         added_task = api_key.add_task(
@@ -65,17 +91,27 @@ def add_new_task(api_key, task):
             parent_id=task.parent_id
         )
         print(f"Added task: {added_task}")
+        return added_task
     except Exception as error:
         print(error)
+        return None
 
 ######################################################################################################## Helper functions
 def find_item_id(items, item_name):
-    """Finds a item (e.g project or section) by name. Returnes a id of an item."""
+    """
+    Finds an item (e.g project or section) by name and returns its ID.
+
+    Parameters:
+        - items (list): A list of items to search through.
+        - item_name (str): The name of the item to find.
+
+    Returns:
+        int or None: The ID of the found item, or None if not found.
+    """
     try:
         for item in items:
             if item.name == item_name:
                 print(f"Found item: {item}")
-                #print(item)
                 return item.id
         return None
     except Exception as error:
@@ -83,7 +119,16 @@ def find_item_id(items, item_name):
         return None
     
 def read_tasks_from_csv(file_path):
-    """Reads tasks from csv file and returns a list of Task items."""
+    """
+    Reads tasks from a CSV file and returns a list of Task items.
+
+    Parameters:
+        file_path (str): The path to the CSV file.
+
+    Returns:
+        list: A list of Task objects.
+
+    """
     tasks = []
     with open(file_path, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -100,7 +145,7 @@ def read_tasks_from_csv(file_path):
                 parent_id=row['parent_id'] if row['parent_id'] else None
                 )
             tasks.append(task)
-    return tasks   
+    return tasks
 
 def main():
     
