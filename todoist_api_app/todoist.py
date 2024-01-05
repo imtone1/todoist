@@ -1,6 +1,7 @@
 from todoist_api_python.api import TodoistAPI
     #muuttujat
 from muuttujat import *
+import csv
 
 api_key = TodoistAPI(TODOIST_API_KEY)
 
@@ -69,23 +70,48 @@ def find_project(projects, project_name):
         return None
     except Exception as error:
         print(error)
-        return None      
+        return None
+    
+def read_tasks_from_csv(file_path):
+    tasks = []
+    with open(file_path, newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            task = Task(
+                content=row['content'] if row['content'] else None,
+                description=row['description'] if row['description'] else None,
+                order=int(row['order']) if row['order'] else 1,
+                priority=int(row['priority']) if row['priority'] else 1,
+                project_id=row['project_id'] if row['project_id'] else None,
+                labels=row['labels'].split(',') if row['labels'] else [],
+                due_date=row['due_date'] if row['due_date'] else None,
+                section_id=row['section_id'] if row['section_id'] else None,
+                parent_id=row['parent_id'] if row['parent_id'] else None
+                )
+            tasks.append(task)
+    return tasks   
 
 def main():
     
-    projects=get_all_projects(api_key)
-    project_id = find_project(projects, "Inbox")
-    task = Task(
-        content="labels",
-        description="dekaögsd",
-        order=1,
-        priority=1,
-        project_id=project_id,
-        labels=["label1", "Python"],
-        due_date="2024-01-06"
-        )
+    # projects=get_all_projects(api_key)
+    # project_id = find_project(projects, "Inbox")
+    # task = Task(
+    #     content="labels",
+    #     description="dekaögsd",
+    #     order=1,
+    #     priority=1,
+    #     project_id=project_id,
+    #     labels=["label1", "Python"],
+    #     due_date="2024-01-06"
+    #     )
   
-    add_new_task(api_key, task)
+    
+    # Käytä tätä funktiota tiedostopolulla
+    tasks = read_tasks_from_csv('./todoist_api/todoist_api_app/task_data.csv')
+    print(tasks)
+    for task in tasks:
+
+        add_new_task(api_key, task)
 
 if __name__ == "__main__":
     main()
