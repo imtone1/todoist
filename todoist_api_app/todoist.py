@@ -57,7 +57,16 @@ def get_one_project(api_key, project_id):
         return None
 
 def get_all_sections(api_key, project_id):
-    """Gets all sections in a project. Returnes a json of Section items."""
+    """
+    Gets all sections in a project.
+
+    Parameters:
+        - api_key (str): The API key used for authentication.
+        - project_id (int): The ID of the project.
+
+    Returns:
+    - sections (list): A list of Section items.
+    """
     try:
         sections = api_key.get_sections(project_id=project_id)
         print(sections)
@@ -88,7 +97,8 @@ def add_new_task(api_key, task):
             labels=task.labels,
             due_date=task.due_date,
             section_id=task.section_id,
-            parent_id=task.parent_id
+            parent_id=task.parent_id,
+            due_lang=task.due_lang
         )
         print(f"Added task: {added_task}")
         return added_task
@@ -123,7 +133,7 @@ def read_tasks_from_csv(file_path):
     Reads tasks from a CSV file and returns a list of Task items.
 
     Parameters:
-        file_path (str): The path to the CSV file.
+        - file_path (str): The path to the CSV file.
 
     Returns:
         list: A list of Task objects.
@@ -147,12 +157,28 @@ def read_tasks_from_csv(file_path):
             tasks.append(task)
     return tasks
 
+def check_if_str(task_id):
+    """
+    Check if the given task_id is a string.
+
+    Parameters:
+        - task_id (any): The task_id to be checked.
+
+    Returns:
+    bool: True if the task_id is a string, False otherwise.
+    """
+
+    if isinstance(task_id, str):
+        return True
+    else:
+        return False
+
 def main():
     
     projects=get_all_projects(api_key)
-    project_id = find_item_id(projects, "Inbox")
+    # project_id = find_item_id(projects, "Inbox")
 
-    get_all_sections(api_key, project_id)
+    # get_all_sections(api_key, project_id)
     # task = Task(
     #     content="labels",
     #     description="dekaögsd",
@@ -164,10 +190,21 @@ def main():
     #     )
   
     # Adding tasks from csv file
-    # tasks = read_tasks_from_csv('./todoist_api/todoist_api_app/task_data.csv')
-    # print(tasks)
-    # for task in tasks:
-    #     add_new_task(api_key, task)
+    tasks = read_tasks_from_csv('./todoist_api/todoist_api_app/tasks_data.csv')
+    #print(tasks)
+    for task in tasks:
+        #check if project_id is a string. Means that user has given a project name.
+        if check_if_str(task.project_id):
+            project_id = find_item_id(projects, task.project_id)
+
+        else:
+            project_id = find_item_id(projects, "Inbox")
+
+        sections=get_all_sections(api_key, project_id)
+        section_id = find_item_id(sections, task.section_id)
+        task.project_id = project_id
+        task.section_id = section_id
+        add_new_task(api_key, task)   
 
 if __name__ == "__main__":
     main()
