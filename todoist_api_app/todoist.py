@@ -75,7 +75,15 @@ def get_all_sections(api_key, project_id):
     except Exception as error:
         print(error)
         return None
-        
+
+def get_all_active_tasks(api_key):
+    try: 
+        tasks = api_key.get_tasks()
+        return tasks
+    except Exception as error:
+        print(error)
+        return None
+
 def add_new_task(api_key, task):
     """
     Add a new task to Todoist.
@@ -177,35 +185,42 @@ def check_if_str(task_id):
 
 def main():
     # Adding tasks from csv file
-    tasks = read_tasks_from_csv('./todoist_api/todoist_api_app/tasks_data.csv')
+    # tasks = read_tasks_from_csv('./todoist_api/todoist_api_app/tasks_data.csv')
 
-    subtasks= read_tasks_from_csv('./todoist_api/todoist_api_app/subtasks_data.csv')
-    projects=get_all_projects(api_key)
+    # subtasks= read_tasks_from_csv('./todoist_api/todoist_api_app/subtasks_data.csv')
+    # projects=get_all_projects(api_key)
 
-    for task in tasks:
-        #check if project_id is a string. Means that user has given a project name.
-        if check_if_str(task.project_id):
-            project_id = find_item_id(projects, task.project_id)
+    # for task in tasks:
+    #     #check if project_id is a string. Means that user has given a project name.
+    #     if check_if_str(task.project_id):
+    #         project_id = find_item_id(projects, task.project_id)
 
-        else:
-            project_id = find_item_id(projects, "Inbox")
+    #     else:
+    #         project_id = find_item_id(projects, "Inbox")
        
-       #Get all sections in the project
-        sections=get_all_sections(api_key, project_id)
-        section_id = find_item_id(sections, task.section_id)
-        task.project_id = project_id
-        task.section_id = section_id
-        new_task=add_new_task(api_key, task)
-        new_task=new_task.id
-        print(f"new task id: {new_task}")
-        #does the task have subtasks
-        if check_if_str(task.child_tasks):
-            for subtask in subtasks:
-                if task.content==subtask.child_tasks:
-                    subtask.parent_id=new_task
-                    subtask.project_id=project_id
-                    subtask.section_id=section_id
-                    add_new_task(api_key, subtask)
+    #    #Get all sections in the project
+    #     sections=get_all_sections(api_key, project_id)
+    #     section_id = find_item_id(sections, task.section_id)
+    #     task.project_id = project_id
+    #     task.section_id = section_id
+    #     new_task=add_new_task(api_key, task)
+    #     new_task=new_task.id
+    #     print(f"new task id: {new_task}")
+    #     #does the task have subtasks
+    #     if check_if_str(task.child_tasks):
+    #         for subtask in subtasks:
+    #             if task.content==subtask.child_tasks:
+    #                 subtask.parent_id=new_task
+    #                 subtask.project_id=project_id
+    #                 subtask.section_id=section_id
+    #                 add_new_task(api_key, subtask)
+    
+    #Get all active tasks
+    active_tasks=get_all_active_tasks(api_key)
+    print(active_tasks)
+    # for task in active_tasks:
+
+    #     print(f"Active task {task}")
 
 
 if __name__ == "__main__":
