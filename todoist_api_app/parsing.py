@@ -23,7 +23,7 @@ def get_all_active_tasks(api_key):
         return None
 
 
-def add_task_to_xml(task, xml_file_path: str):
+def add_task_to_xml(task, taskset,course_count, xml_file_path: str):
     """
     Adds a task to an XML file.
 
@@ -45,15 +45,22 @@ def add_task_to_xml(task, xml_file_path: str):
     task_cell = ET.Element("mxCell")
     task_cell.set("id", task.id)
     task_cell.set("value", task.content)
-    task_cell.set("style", "whiteSpace=wrap;rounded=1;shadow=1;fillColor=#10739E;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=24")
-    task_cell.set("parent", "1")  # Assuming '1' is the common parent for cells
+    task_cell.set("style", "whiteSpace=wrap;rounded=1;shadow=1;fillColor=#10739E;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontSize=12")
+    task_cell.set("parent", "1")
     task_cell.set("vertex", "1")
 
+
+    x_coodinate_tasks = 0
+    y_coodinate = 260 + taskset*80
+    x_coodinate_course=-150+course_count*150
+    x_coodinate_section=-370+course_count*360
+
+    
     # mxGeometry element
     geometry = ET.SubElement(task_cell, "mxGeometry")
-    geometry.set("x", "220")  # Example position, can be modified
-    geometry.set("y", "-10")  # Example position, can be modified
-    geometry.set("width", "340")
+    geometry.set("x", str(x_coodinate_course))
+    geometry.set("y", str(y_coodinate))
+    geometry.set("width", "120")
     geometry.set("height", "60")
     geometry.set("as", "geometry")
 
@@ -79,13 +86,27 @@ def main():
             tasks_by_section_and_label[task.section_id][task.labels[0]] = []
         if task.labels:
             tasks_by_section_and_label[task.section_id][task.labels[0]].append(task)
-    print(f"Tasks by section and label {tasks_by_section_and_label}")
-    for task in sorted_tasks:
-        print(task)
-        #add_task_to_xml(task, xml_file_path)
-        print(f"Taso 1: {task.section_id}")
-        #print(f"Taso 2: {task.labels[0]}")
-        print(f"Taso 3: {task.content}")
+    section_count=0
+    for section_id, labels in tasks_by_section_and_label.items():
+        print(f"Section ID: {section_id}")
+        section_count+=1
+        course_count=0
+        for label, tasks in labels.items():
+            course_count+=1
+            print(f"Label: {label}")
+            task_count=0
+            for task in tasks:
+                task_count+=1
+                print(f"Task: {task}")
+                #For now only returnig one section
+                if section_count==1:
+                    add_task_to_xml(task,task_count, course_count,xml_file_path)
+    # for task in sorted_tasks:
+    #     print(task)
+    #     
+    #     print(f"Taso 1: {task.section_id}")
+    #     #print(f"Taso 2: {task.labels[0]}")
+    #     print(f"Taso 3: {task.content}")
     
     print(tasks[1].due.date)
 
