@@ -176,11 +176,12 @@ def main():
     colors=["#ED9B09","#326CAD","#0974ED","#987639","#3B536E"]
     colors1=["#F007DA","#55B031","#4AF008","#9B3891","#4A703B"]
     priority_colors=["#FFFFFF","#3cb371","#ffa500","#ff0000"]
+    color_index=0
     for section_id, labels in tasks_by_section_and_label.items():
         print(f"Section ID: {section_id}")
         section_count+=1
         section_name = find_item_name(sections, section_id)
-        x_coodinate_section=-260+section_count*360
+        x_coodinate_section=160+(course_count/2)*260
         
         for label, tasks in labels.items():
             
@@ -190,19 +191,23 @@ def main():
             print(f"tasks count: {len(tasks)}")
             course_count+=1
             course_task_count=0
+            color_index = (color_index + 1) % len(colors)
+            
+
             for task in tasks:
                 
                 course_task_count+=1
+
                 y_coodinate = 260 + course_task_count*80
                 
                 print(f"Task: {task}")
-             
-                add_task_to_xml(task.id, task.content, x_coodinate_course,y_coodinate,xml_file_path, colors[course_count-1], "0", "12", priority_colors[task.priority-1],5)
+
+                add_task_to_xml(task.id, task.content, x_coodinate_course,y_coodinate,xml_file_path, colors[color_index], "0", "12", priority_colors[task.priority-1],5)
             task_count+=1
         
-            add_task_to_xml(label_id, label, x_coodinate_course, 250 ,xml_file_path, colors[course_count-1], "1","14")
+            add_task_to_xml(label_id, label, x_coodinate_course, 250 ,xml_file_path, colors[color_index], "1","14")
         between_sections+=50
-        add_task_to_xml(section_id, str(section_name), x_coodinate_section, "120" ,xml_file_path, colors1[course_count-1], "1","14" )
+        add_task_to_xml(section_id, str(section_name), x_coodinate_section, "120" ,xml_file_path, colors1[color_index], "1","14" )
     # for task in sorted_tasks:
     #     print(task)
     #     
