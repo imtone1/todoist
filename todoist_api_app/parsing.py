@@ -22,6 +22,84 @@ def get_all_active_tasks(api_key):
         print(error)
         return None
 
+def get_all_sections(api_key, project_id):
+    """
+    Gets all sections in a project.
+
+    Parameters:
+        - api_key (str): The API key used for authentication.
+        - project_id (int): The ID of the project.
+
+    Returns:
+    - sections (list): A list of Section items.
+    """
+    try:
+        sections = api_key.get_sections(project_id=project_id)
+        print(sections)
+        return sections
+    except Exception as error:
+        print(error)
+        return None
+
+def get_all_projects(api_key):
+    """
+    Gets all projects.
+
+    Parameters:
+        - api_key (str): The API key used for authentication.
+
+    Returns:
+        list of objects: A list of Project items.
+    """
+
+    try:
+        projects = api_key.get_projects()
+        return projects
+        
+    except Exception as error:
+        print(error)
+
+def find_item_id(items, item_name):
+    """
+    Finds an item (e.g project or section) by name and returns its ID.
+
+    Parameters:
+        - items (list): A list of items to search through.
+        - item_name (str): The name of the item to find.
+
+    Returns:
+        int or None: The ID of the found item, or None if not found.
+    """
+    try:
+        for item in items:
+            if item.name == item_name:
+                print(f"Found item: {item}")
+                return item.id
+        return None
+    except Exception as error:
+        print(error)
+        return None
+
+def find_item_name(items, item_id):
+    """
+    Finds an item (e.g project or section) by ID and returns its name.
+
+    Parameters:
+        - items (list): A list of items to search through.
+        - item_id (int): The ID of the item to find.
+
+    Returns:
+        str or None: The name of the found item, or None if not found.
+    """
+    try:
+        for item in items:
+            if item.id == item_id:
+                print(f"Found item: {item}")
+                return item.name
+        return None
+    except Exception as error:
+        print(error)
+        return None
 
 def add_task_to_xml(task_id:str, task_content:str, x_coodinate_course:int, y_coodinate:int, xml_file_path: str,fillcolor:str, fontstyle:int=0, fontsize:int=12,bordercolor: str="#000000",borderwidth:int=0):
     """
@@ -74,7 +152,11 @@ def add_task_to_xml(task_id:str, task_content:str, x_coodinate_course:int, y_coo
 
 def main():
     xml_file_path = './todoist_api/todoist_api_app/chart_copy.drawio'
+    projects=get_all_projects(api_key)
     tasks=get_all_active_tasks(api_key)
+    project_id = find_item_id(projects, "Inbox")
+    sections=get_all_sections(api_key, project_id)
+    
     sorted_tasks = sorted(tasks, key=lambda task: task.due.date if task.due else "2040-00-00")
 
     # Group tasks by section_id and labels[0]
@@ -97,6 +179,7 @@ def main():
     for section_id, labels in tasks_by_section_and_label.items():
         print(f"Section ID: {section_id}")
         section_count+=1
+        section_name = find_item_name(sections, section_id)
         x_coodinate_section=-260+section_count*360
         
         for label, tasks in labels.items():
@@ -119,7 +202,7 @@ def main():
         
             add_task_to_xml(label_id, label, x_coodinate_course, 250 ,xml_file_path, colors[course_count-1], "1","14")
         between_sections+=50
-        add_task_to_xml(section_id, section_id, x_coodinate_section, "120" ,xml_file_path, colors1[course_count-1], "1","14" )
+        add_task_to_xml(section_id, str(section_name), x_coodinate_section, "120" ,xml_file_path, colors1[course_count-1], "1","14" )
     # for task in sorted_tasks:
     #     print(task)
     #     
