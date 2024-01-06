@@ -23,13 +23,21 @@ def get_all_active_tasks(api_key):
         return None
 
 
-def add_task_to_xml(task, taskset,course_count, xml_file_path: str):
+def add_task_to_xml(task_id:str, task_content:str, x_coodinate_course:int, y_coodinate:int, xml_file_path: str,fillcolor:str, fontstyle:int=0, fontsize:int=12,bordercolor: str="#000000",borderwidth:int=0):
     """
     Adds a task to an XML file.
 
     Parameters:
-        - task: The task object to be added.
-        - xml_file_path: The path to the XML file.
+        - task_id (str): The ID of the task.
+        - task_content (str): The content of the task.
+        - x_coodinate_course (int): The x-coordinate of the task cell.
+        - y_coodinate (int): The y-coordinate of the task cell.
+        - xml_file_path (str): The path to the XML file.
+        - fillcolor (str): The fill color of the task cell.
+        - fontstyle (int, optional): The font style of the task cell. Defaults to 0.
+        - fontsize (int, optional): The font size of the task cell. Defaults to 12.
+        - bordercolor (str, optional): The border color of the task cell. Defaults to "#000000".
+        - borderwidth (int, optional): The border width of the task cell. Defaults to 0.
 
     Returns:
         None
@@ -40,22 +48,15 @@ def add_task_to_xml(task, taskset,course_count, xml_file_path: str):
 
     #Element where we will insert the new cell
     diagram = root.find(".//diagram/mxGraphModel/root")
-
+    
     # mxCell element
     task_cell = ET.Element("mxCell")
-    task_cell.set("id", task.id)
-    task_cell.set("value", task.content)
-    task_cell.set("style", "whiteSpace=wrap;rounded=1;shadow=1;fillColor=#10739E;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontSize=12")
+    task_cell.set("id", task_id)
+    task_cell.set("value", task_content)
+    task_cell.set("style", f"whiteSpace=wrap;rounded=1;shadow=1;fillColor={fillcolor};strokeColor=none;fontColor=#FFFFFF;fontStyle={fontstyle};fontSize={fontsize};strokeWidth={borderwidth};strokeColor={bordercolor};")
     task_cell.set("parent", "1")
     task_cell.set("vertex", "1")
 
-
-    x_coodinate_tasks = 0
-    y_coodinate = 260 + taskset*80
-    x_coodinate_course=-150+course_count*150
-    x_coodinate_section=-370+course_count*360
-
-    
     # mxGeometry element
     geometry = ET.SubElement(task_cell, "mxGeometry")
     geometry.set("x", str(x_coodinate_course))
@@ -76,7 +77,6 @@ def main():
     tasks=get_all_active_tasks(api_key)
     sorted_tasks = sorted(tasks, key=lambda task: task.due.date if task.due else "2040-00-00")
 
-
     # Group tasks by section_id and labels[0]
     tasks_by_section_and_label = {}
     for task in sorted_tasks:
@@ -86,21 +86,40 @@ def main():
             tasks_by_section_and_label[task.section_id][task.labels[0]] = []
         if task.labels:
             tasks_by_section_and_label[task.section_id][task.labels[0]].append(task)
+    
     section_count=0
+    task_count=1
+    course_count=1
+    between_sections=0
+    colors=["#ED9B09","#326CAD","#0974ED","#987639","#3B536E"]
+    colors1=["#F007DA","#55B031","#4AF008","#9B3891","#4A703B"]
+    priority_colors=["#FFFFFF","#3cb371","#ffa500","#ff0000"]
     for section_id, labels in tasks_by_section_and_label.items():
         print(f"Section ID: {section_id}")
         section_count+=1
-        course_count=0
+        x_coodinate_section=-260+section_count*360
+        
         for label, tasks in labels.items():
-            course_count+=1
+            
             print(f"Label: {label}")
-            task_count=0
+            x_coodinate_course=-150+between_sections+course_count*150
+            label_id=label+str(course_count)
+            print(f"tasks count: {len(tasks)}")
+            course_count+=1
+            course_task_count=0
             for task in tasks:
-                task_count+=1
+                
+                course_task_count+=1
+                y_coodinate = 260 + course_task_count*80
+                
                 print(f"Task: {task}")
-                #For now only returnig one section
-                if section_count==1:
-                    add_task_to_xml(task,task_count, course_count,xml_file_path)
+             
+                add_task_to_xml(task.id, task.content, x_coodinate_course,y_coodinate,xml_file_path, colors[course_count-1], "0", "12", priority_colors[task.priority-1],5)
+            task_count+=1
+        
+            add_task_to_xml(label_id, label, x_coodinate_course, 250 ,xml_file_path, colors[course_count-1], "1","14")
+        between_sections+=50
+        add_task_to_xml(section_id, section_id, x_coodinate_section, "120" ,xml_file_path, colors1[course_count-1], "1","14" )
     # for task in sorted_tasks:
     #     print(task)
     #     
@@ -108,10 +127,7 @@ def main():
     #     #print(f"Taso 2: {task.labels[0]}")
     #     print(f"Taso 3: {task.content}")
     
-    print(tasks[1].due.date)
-
-    colors=["#ED9B09","#326CAD","#0974ED","#987639","#3B536E"]
-    colors1=["#F007DA","#55B031","#4AF008","#9B3891","#4A703B"]
+    #print(tasks[1].due.date)
 
 if __name__ == "__main__":
     main()
