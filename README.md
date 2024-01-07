@@ -8,7 +8,7 @@ In chart is marked the sections, labels that I use to mark courses, and below co
 
 ![chart](wbs_chart.PNG)
 
-## ## Features
+## Features
 
 - Fetch active tasks, projects, and sections from Todoist.
 - Visualize tasks in an XML chart with customizable styling.

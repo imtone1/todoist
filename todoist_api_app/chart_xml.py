@@ -175,6 +175,7 @@ def main():
     xml_file_path = './todoist_api/todoist_api_app/chart_copy.drawio'
     section_count=0
     task_count=1
+    subtask_count=1
     course_count=1
     between_sections=0
     colors=["#ED9B09","#326CAD","#0974ED","#987639","#3B536E"]
@@ -211,7 +212,7 @@ def main():
         for label, tasks in labels.items():
             
             print(f"Label: {label}")
-            x_coodinate_course=-150+between_sections+course_count*150
+            x_coodinate_course=-150+between_sections+course_count*250
             label_id=label+str(course_count)
             print(f"tasks count: {len(tasks)}")
             course_count+=1
@@ -220,29 +221,50 @@ def main():
             
 
             for task in tasks:
-                
                 course_task_count+=1
-
                 y_coodinate = 260 + course_task_count*100
-                
-                #print(f"Task: {task}")
-                task_chart=Chart(
-                    task_id=task.id,
-                    task_content=task.content,
-                    x_coodinate_course=x_coodinate_course,
-                    y_coodinate=y_coodinate,
-                    xml_file_path=xml_file_path,
-                    fillcolor=colors[color_index],
-                    fontstyle="0",
-                    fontsize="12",
-                    bordercolor=priority_colors[task.priority-1],
-                    borderwidth="5",
-                    width="120",
-                    height="60"
+                #Adding tasks and subtasks to the chart
+                if task.parent_id == None:
 
-                )
+                    #print(f"Task: {task}")
+                    task_chart=Chart(
+                        task_id=task.id,
+                        task_content=task.content,
+                        x_coodinate_course=x_coodinate_course,
+                        y_coodinate=y_coodinate,
+                        xml_file_path=xml_file_path,
+                        fillcolor=colors[color_index],
+                        fontstyle="0",
+                        fontsize="12",
+                        bordercolor=priority_colors[task.priority-1],
+                        borderwidth="5",
+                        width="120",
+                        height="60"
 
-                add_task_to_xml(task_chart)
+                    )
+
+                    add_task_to_xml(task_chart)
+                else:
+                    subtask_count+=1
+                   
+                    print(f"Subtask: {task}")
+                    subtask_chart=Chart(
+                        task_id=task.id,
+                        task_content=task.content,
+                        x_coodinate_course=x_coodinate_course+50,
+                        y_coodinate=y_coodinate,
+                        xml_file_path=xml_file_path,
+                        fillcolor=colors[color_index],
+                        fontstyle="0",
+                        fontsize="12",
+                        bordercolor=priority_colors[task.priority-1],
+                        borderwidth="5",
+                        width="120",
+                        height="50"
+
+                    )
+
+                    add_task_to_xml(subtask_chart)
             task_count+=1
             course=Chart(
                 task_id=label_id,
@@ -259,7 +281,7 @@ def main():
                 height="60"
             )
             add_task_to_xml(course)
-        between_sections+=50
+        between_sections+=150
         section=Chart(
             task_id=section_id,
             task_content=str(section_name),
