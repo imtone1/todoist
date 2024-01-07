@@ -1,5 +1,7 @@
 # Todoist Task Adding Project
 
+Idea behind this project is to make it easier to plan your studies. You can add tasks to Todoist and then visualize them in a chart. 
+
 This project provides a Python script for adding tasks to your [Todoist](https://todoist.com) account. Functions for adding tasks from csv file are located in the todoist.py file. See documentation of the file in [Todoist adding functions](#todoist-adding-functions) section.
 
 Additionally, the script can be used to create a [Work Breakdown Structure](https://en.wikipedia.org/wiki/Work_breakdown_structure) (WBS) chart from active tasks on your Todoist account. For that purpose, the script uses the [draw.io](https://www.drawio.com/). Draw.io is a free online diagram software for making flowcharts, process diagrams, org charts, UML, ER and network diagrams. Created with draw.io, the WBS chart can be exported as a PNG file and it can be modified further in a draw.io. 
@@ -7,6 +9,8 @@ Additionally, the script can be used to create a [Work Breakdown Structure](http
 In chart is marked the sections, labels that I use to mark courses, and below courses are the tasks. Tasks have a priority, which is marked with different colors. 
 
 ![chart](wbs_chart.PNG)
+
+
 
 ## Features
 
@@ -40,7 +44,7 @@ To deactivate the virtual environment, type:
 exit
 ```
 
-## Todoist adding functions
+## Todoist functionality
 
 | Function Name            | Description                                         | Parameters                                                    | Returns                                        |
 |--------------------------|-----------------------------------------------------|---------------------------------------------------------------|------------------------------------------------|
@@ -55,7 +59,10 @@ exit
 ![diagram](diagram.drawio.png)
 
 
-## Chart making functions
+## Chart functionality
+
+This is based on that [draw.io](https://www.drawio.com/) diagrams is in the  XML format. This functionality chart_xml.py file. It creates XML file that you can open in draw.io.
+I recommend to use [draw.io Visual Studio extension ](https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio) for this purpose. You can open the same *.drawio file with the Draw.io editor and as xml file and see the changes in real time. 
 
 | Function Name          | Description                                         | Parameters                                                                                                              | Returns                                             |
 |------------------------|-----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|

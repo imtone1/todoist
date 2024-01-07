@@ -207,7 +207,7 @@ def main():
         print(f"Section ID: {section_id}")
         section_count+=1
         section_name = find_item_name(sections, section_id)
-        x_coodinate_section=160+(course_count/2)*260
+        x_coodinate_section=20+(course_count/2)*260
         
         for label, tasks in labels.items():
             
@@ -281,11 +281,11 @@ def main():
                 height="60"
             )
             add_task_to_xml(course)
-        between_sections+=150
+        
         section=Chart(
             task_id=section_id,
             task_content=str(section_name),
-            x_coodinate_course=x_coodinate_section,
+            x_coodinate_course=x_coodinate_section+between_sections*1.5,
             y_coodinate=120,
             xml_file_path=xml_file_path,
             fillcolor=colors1[color_index],
@@ -297,6 +297,7 @@ def main():
             height="60"
         )
         add_task_to_xml(section)
+        between_sections+=150
     print(f"We are done. {section_count} sections and {task_count} tasks added to the chart.")
 
 if __name__ == "__main__":
