@@ -170,12 +170,25 @@ def add_task_to_xml(item_object: Chart):
 
 
 def main():
+
+    ## Setting up variables
     xml_file_path = './todoist_api/todoist_api_app/chart_copy.drawio'
+    section_count=0
+    task_count=1
+    course_count=1
+    between_sections=0
+    colors=["#ED9B09","#326CAD","#0974ED","#987639","#3B536E"]
+    colors1=["#F007DA","#55B031","#4AF008","#9B3891","#4A703B"]
+    priority_colors=["#FFFFFF","#3cb371","#ffa500","#ff0000"]
+    color_index=0
+
+    ## Getting data from Todoist
     projects=get_all_projects(api_key)
     tasks=get_all_active_tasks(api_key)
     project_id = find_item_id(projects, "Inbox")
     sections=get_all_sections(api_key, project_id)
     
+    ## Sorting tasks by due date
     sorted_tasks = sorted(tasks, key=lambda task: task.due.date if task.due else "2040-00-00")
 
     # Group tasks by section_id and labels[0]
@@ -188,14 +201,7 @@ def main():
         if task.labels:
             tasks_by_section_and_label[task.section_id][task.labels[0]].append(task)
     
-    section_count=0
-    task_count=1
-    course_count=1
-    between_sections=0
-    colors=["#ED9B09","#326CAD","#0974ED","#987639","#3B536E"]
-    colors1=["#F007DA","#55B031","#4AF008","#9B3891","#4A703B"]
-    priority_colors=["#FFFFFF","#3cb371","#ffa500","#ff0000"]
-    color_index=0
+    #Processing each section, label and task. Adding them to the chart.
     for section_id, labels in tasks_by_section_and_label.items():
         print(f"Section ID: {section_id}")
         section_count+=1
