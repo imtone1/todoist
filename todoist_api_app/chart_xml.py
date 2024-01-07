@@ -5,6 +5,22 @@ from muuttujat import *
 
 api_key = TodoistAPI(TODOIST_API_KEY)
 
+class Chart:
+    def __init__(self, task_id:str, task_content:str, x_coodinate_course:int, y_coodinate:int, xml_file_path: str, fillcolor:str, fontstyle:int=0, fontsize:int=12, bordercolor: str="#000000", borderwidth:int=0, width:str="120", height:str="60"):
+        self.task_id = task_id
+        self.task_content = task_content
+        self.x_coodinate_course = x_coodinate_course
+        self.y_coodinate = y_coodinate
+        self.xml_file_path = xml_file_path
+        self.fillcolor = fillcolor
+        self.fontstyle = fontstyle
+        self.fontsize = fontsize
+        self.bordercolor = bordercolor
+        self.borderwidth = borderwidth
+        self.width = width
+        self.height = height
+
+######################################################################################################## API related functions
 def get_all_active_tasks(api_key):
     """
     Retrieves all active tasks using the provided API key.
@@ -59,6 +75,7 @@ def get_all_projects(api_key):
     except Exception as error:
         print(error)
 
+######################################################################################################## Helper functions
 def find_item_id(items, item_name):
     """
     Finds an item (e.g project or section) by name and returns its ID.
@@ -101,11 +118,13 @@ def find_item_name(items, item_id):
         print(error)
         return None
 
-def add_task_to_xml(task_id:str, task_content:str, x_coodinate_course:int, y_coodinate:int, xml_file_path: str,fillcolor:str, fontstyle:int=0, fontsize:int=12,bordercolor: str="#000000",borderwidth:int=0):
+######################################################################################################## XML related functions
+def add_task_to_xml(item_object: Chart):
     """
     Adds a task to an XML file.
 
     Parameters:
+     - item_object (Chart): An object containing the task details:
         - task_id (str): The ID of the task.
         - task_content (str): The content of the task.
         - x_coodinate_course (int): The x-coordinate of the task cell.
@@ -121,7 +140,7 @@ def add_task_to_xml(task_id:str, task_content:str, x_coodinate_course:int, y_coo
         None
     """
     # XML file
-    tree = ET.parse(xml_file_path)
+    tree = ET.parse(item_object.xml_file_path)
     root = tree.getroot()
 
     #Element where we will insert the new cell
@@ -129,25 +148,25 @@ def add_task_to_xml(task_id:str, task_content:str, x_coodinate_course:int, y_coo
     
     # mxCell element
     task_cell = ET.Element("mxCell")
-    task_cell.set("id", task_id)
-    task_cell.set("value", task_content)
-    task_cell.set("style", f"whiteSpace=wrap;rounded=1;shadow=1;fillColor={fillcolor};strokeColor=none;fontColor=#FFFFFF;fontStyle={fontstyle};fontSize={fontsize};strokeWidth={borderwidth};strokeColor={bordercolor};")
+    task_cell.set("id", item_object.task_id)
+    task_cell.set("value", item_object.task_content)
+    task_cell.set("style", f"whiteSpace=wrap;rounded=1;shadow=1;fillColor={item_object.fillcolor};strokeColor=none;fontColor=#FFFFFF;fontStyle={item_object.fontstyle};fontSize={item_object.fontsize};strokeWidth={item_object.borderwidth};strokeColor={item_object.bordercolor};")
     task_cell.set("parent", "1")
     task_cell.set("vertex", "1")
 
     # mxGeometry element
     geometry = ET.SubElement(task_cell, "mxGeometry")
-    geometry.set("x", str(x_coodinate_course))
-    geometry.set("y", str(y_coodinate))
-    geometry.set("width", "120")
-    geometry.set("height", "60")
+    geometry.set("x", str(item_object.x_coodinate_course))
+    geometry.set("y", str(item_object.y_coodinate))
+    geometry.set("width", item_object.width)
+    geometry.set("height", item_object.height)
     geometry.set("as", "geometry")
 
     # Append the new cell to the diagram
     diagram.append(task_cell)
 
     # Write back to the file
-    tree.write(xml_file_path)
+    tree.write(item_object.xml_file_path)
 
 
 def main():
@@ -198,24 +217,59 @@ def main():
                 
                 course_task_count+=1
 
-                y_coodinate = 260 + course_task_count*80
+                y_coodinate = 260 + course_task_count*100
                 
-                print(f"Task: {task}")
+                #print(f"Task: {task}")
+                task_chart=Chart(
+                    task_id=task.id,
+                    task_content=task.content,
+                    x_coodinate_course=x_coodinate_course,
+                    y_coodinate=y_coodinate,
+                    xml_file_path=xml_file_path,
+                    fillcolor=colors[color_index],
+                    fontstyle="0",
+                    fontsize="12",
+                    bordercolor=priority_colors[task.priority-1],
+                    borderwidth="5",
+                    width="120",
+                    height="60"
 
-                add_task_to_xml(task.id, task.content, x_coodinate_course,y_coodinate,xml_file_path, colors[color_index], "0", "12", priority_colors[task.priority-1],5)
+                )
+
+                add_task_to_xml(task_chart)
             task_count+=1
-        
-            add_task_to_xml(label_id, label, x_coodinate_course, 250 ,xml_file_path, colors[color_index], "1","14")
+            course=Chart(
+                task_id=label_id,
+                task_content=label,
+                x_coodinate_course=x_coodinate_course-10,
+                y_coodinate=250,
+                xml_file_path=xml_file_path,
+                fillcolor=colors[color_index],
+                fontstyle="1",
+                fontsize="14",
+                bordercolor="#000000",
+                borderwidth="0",
+                width="140",
+                height="60"
+            )
+            add_task_to_xml(course)
         between_sections+=50
-        add_task_to_xml(section_id, str(section_name), x_coodinate_section, "120" ,xml_file_path, colors1[color_index], "1","14" )
-    # for task in sorted_tasks:
-    #     print(task)
-    #     
-    #     print(f"Taso 1: {task.section_id}")
-    #     #print(f"Taso 2: {task.labels[0]}")
-    #     print(f"Taso 3: {task.content}")
-    
-    #print(tasks[1].due.date)
+        section=Chart(
+            task_id=section_id,
+            task_content=str(section_name),
+            x_coodinate_course=x_coodinate_section,
+            y_coodinate=120,
+            xml_file_path=xml_file_path,
+            fillcolor=colors1[color_index],
+            fontstyle="1",
+            fontsize="14",
+            bordercolor="#000000",
+            borderwidth="0",
+            width="160",
+            height="60"
+        )
+        add_task_to_xml(section)
+    print(f"We are done. {section_count} sections and {task_count} tasks added to the chart.")
 
 if __name__ == "__main__":
     main()
