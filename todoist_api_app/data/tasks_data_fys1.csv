@@ -1,0 +1,13 @@
+content,description,order,priority,project_id,labels,due_date,section_id,parent_id,child_tasks
+johdanto,,1,4,Inbox,Fys 1,2024-01-14,Jamk,,johdanto
+Tasainen liike,,2,4,Inbox,Fys 1,2024-01-21,Jamk,,Tasainen liike
+Kiihtyvä liike,,3,4,Inbox,Fys 1,2024-01-28,Jamk,,Kiihtyvä liike
+2-uloitteinen liike,,4,4,Inbox,Fys 1,2024-02-04,Jamk,,2-uloitteinen liike
+Heittoliike,,5,4,Inbox,Fys 1,2024-02-11,Jamk,,Heittoliike
+Voimat Newtonin lait,,6,4,Inbox,Fys 1,2024-02-18,Jamk,,Voimat Newtonin lait
+Kitkavoimat,,7,4,Inbox,Fys 1,2024-02-25,Jamk,,Kitkavoimat
+Ympyräliike,,8,4,Inbox,Fys 1,2024-03-17,Jamk,,Ympyräliike
+Ympyräliikkeen dynamiikka,,9,4,Inbox,Fys 1,2024-03-24,Jamk,,Ympyräliikkeen dynamiikka
+Pyörimisliike,,10,4,Inbox,Fys 1,2024-03-31,Jamk,,Pyörimisliike
+Statiikka,,11,4,Inbox,Fys 1,2024-04-07,Jamk,,Statiikka
+Koe,,12,4,Inbox,Fys 1,2024-04-14,Jamk,,Koe

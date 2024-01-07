@@ -1,0 +1,37 @@
+content,description,order,priority,project_id,labels,due_date,section_id,parent_id,child_tasks
+Videot,,1,1,Inbox,Fys 1,2024-01-14,Jamk,,johdanto
+Harjoitustehtävät,,2,2,Inbox,Fys 1,2024-01-14,Jamk,,johdanto
+Kotitehtävät,,3,3,Inbox,Fys 1,2024-01-14,Jamk,,johdanto
+Videot,,1,1,Inbox,Fys 1,2024-01-21,Jamk,,Tasainen liike
+Harjoitustehtävät,,2,2,Inbox,Fys 1,2024-01-21,Jamk,,Tasainen liike
+Kotitehtävät,,3,3,Inbox,Fys 1,2024-01-21,Jamk,,Tasainen liike
+Videot,,1,1,Inbox,Fys 1,2024-01-28,Jamk,,Kiihtyvä liike
+Harjoitustehtävät,,2,2,Inbox,Fys 1,2024-01-28,Jamk,,Kiihtyvä liike
+Kotitehtävät,,3,3,Inbox,Fys 1,2024-01-28,Jamk,,Kiihtyvä liike
+Videot,,1,1,Inbox,Fys 1,2024-02-04,Jamk,,2-uloitteinen liike
+Harjoitustehtävät,,2,2,Inbox,Fys 1,2024-02-04,Jamk,,2-uloitteinen liike
+Kotitehtävät,,3,3,Inbox,Fys 1,2024-02-04,Jamk,,2-uloitteinen liike
+Videot,,1,1,Inbox,Fys 1,2024-02-11,Jamk,,Heittoliike
+Harjoitustehtävät,,2,2,Inbox,Fys 1,2024-02-11,Jamk,,Heittoliike
+Kotitehtävät,,3,3,Inbox,Fys 1,2024-02-11,Jamk,,Heittoliike
+Videot,,1,1,Inbox,Fys 1,2024-02-18,Jamk,,Voimat Newtonin lait
+Harjoitustehtävät,,2,2,Inbox,Fys 1,2024-02-18,Jamk,,Voimat Newtonin lait
+Kotitehtävät,,3,3,Inbox,Fys 1,2024-02-18,Jamk,,Voimat Newtonin lait
+Videot,,1,1,Inbox,Fys 1,2024-02-25,Jamk,,Kitkavoimat
+Harjoitustehtävät,,2,2,Inbox,Fys 1,2024-02-25,Jamk,,Kitkavoimat
+Kotitehtävät,,3,3,Inbox,Fys 1,2024-02-25,Jamk,,Kitkavoimat
+Videot,,1,1,Inbox,Fys 1,2024-03-17,Jamk,,Ympyräliike
+Harjoitustehtävät,,2,2,Inbox,Fys 1,2024-03-17,Jamk,,Ympyräliike
+Kotitehtävät,,3,3,Inbox,Fys 1,2024-03-17,Jamk,,Ympyräliike
+Videot,,1,1,Inbox,Fys 1,2024-03-24,Jamk,,Ympyräliikkeen dynamiikka
+Harjoitustehtävät,,2,2,Inbox,Fys 1,2024-03-24,Jamk,,Ympyräliikkeen dynamiikka
+Kotitehtävät,,3,3,Inbox,Fys 1,2024-03-24,Jamk,,Ympyräliikkeen dynamiikka
+Videot,,1,1,Inbox,Fys 1,2024-03-31,Jamk,,Pyörimisliike
+Harjoitustehtävät,,2,2,Inbox,Fys 1,2024-03-31,Jamk,,Pyörimisliike
+Kotitehtävät,,3,3,Inbox,Fys 1,2024-03-31,Jamk,,Pyörimisliike
+Videot,,1,1,Inbox,Fys 1,2024-04-07,Jamk,,Statiikka
+Harjoitustehtävät,,2,2,Inbox,Fys 1,2024-04-07,Jamk,,Statiikka
+Kotitehtävät,,3,3,Inbox,Fys 1,2024-04-07,Jamk,,Statiikka
+Videot,,1,1,Inbox,Fys 1,2024-04-14,Jamk,,Koe
+Harjoitustehtävät,,2,2,Inbox,Fys 1,2024-04-14,Jamk,,Koe
+Kotitehtävät,,3,3,Inbox,Fys 1,2024-04-14,Jamk,,Koe
