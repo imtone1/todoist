@@ -1,13 +1,19 @@
 # Todoist Task Adding Project
 
-This project provides a Python script for adding tasks to your Todoist account.
+This project provides a Python script for adding tasks to your [Todoist](https://todoist.com) account. Functions for adding tasks from csv file are located in the todoist.py file. See documentation of the file in [Todoist adding functions](#todoist-adding-functions) section.
 
-# Prerequisites
+Additionally, the script can be used to create a [Work Breakdown Structure](https://en.wikipedia.org/wiki/Work_breakdown_structure) (WBS) chart from active tasks on your Todoist account. For that purpose, the script uses the [draw.io](https://www.drawio.com/). Draw.io is a free online diagram software for making flowcharts, process diagrams, org charts, UML, ER and network diagrams. Created with draw.io, the WBS chart can be exported as a PNG file and it can be modified further in a draw.io. 
+
+In chart is marked the sections, labels that I use to mark courses, and below courses are the tasks. Tasks have a priority, which is marked with different colors. 
+
+![chart](wbs_chart.PNG)
+
+## Prerequisites
 
 - A [Todoist](https://todoist.com) account.
 - An API token from Todoist. Read more about Todoist API documentation [here](https://developer.todoist.com/rest/v2#overview).
 
-# Getting Started
+## Getting Started
 
 To use this script, you need to change the values in muuttujat.txt to your own.
 
@@ -29,7 +35,7 @@ To deactivate the virtual environment, type:
 exit
 ```
 
-# Functions
+## Todoist adding functions
 
 | Function Name            | Description                                         | Parameters                                                    | Returns                                        |
 |--------------------------|-----------------------------------------------------|---------------------------------------------------------------|------------------------------------------------|
@@ -43,7 +49,20 @@ exit
 
 ![diagram](diagram.drawio.png)
 
-# Dependences:
+
+## Chart making functions
+
+| Function Name          | Description                                         | Parameters                                                                                                              | Returns                                             |
+|------------------------|-----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
+| `get_all_active_tasks` | Retrieves all active tasks using the provided API key. | `api_key` (str): API key for authentication.                                                       | A list of active tasks or `None` if an error occurs. |
+| `get_all_sections`     | Gets all sections in a project.                       | `api_key` (str): API key for authentication.<br>`project_id` (int): The ID of the project.                   | A list of Section items or `None`.                   |
+| `get_all_projects`     | Gets all projects.                                    | `api_key` (str): API key for authentication.                                                                 | A list of Project items or `None` if an error occurs.|
+| `find_item_id`         | Finds an item (e.g., project or section) by name and returns its ID. | `items` (list): A list of items to search through.<br>`item_name` (str): The name of the item to find. | The ID of the found item, or `None` if not found.    |
+| `find_item_name`       | Finds an item (e.g., project or section) by ID and returns its name. | `items` (list): A list of items to search through.<br>`item_id` (int): The ID of the item to find.     | The name of the found item, or `None` if not found.  |
+| `add_task_to_xml`      | Adds a task to an XML file.                           | `item_object` (Chart): An object containing the task details, including task ID, content, coordinates, and style info.| None                                                |
+
+
+## Dependences:
 
 - Python
 - [Poetry](https://python-poetry.org/docs/)

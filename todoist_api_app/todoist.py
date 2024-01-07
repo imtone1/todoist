@@ -75,7 +75,15 @@ def get_all_sections(api_key, project_id):
     except Exception as error:
         print(error)
         return None
-        
+
+def get_all_active_tasks(api_key):
+    try: 
+        tasks = api_key.get_tasks()
+        return tasks
+    except Exception as error:
+        print(error)
+        return None
+
 def add_new_task(api_key, task):
     """
     Add a new task to Todoist.
@@ -206,6 +214,13 @@ def main():
                     subtask.project_id=project_id
                     subtask.section_id=section_id
                     add_new_task(api_key, subtask)
+    
+    #Get all active tasks
+    # active_tasks=get_all_active_tasks(api_key)
+    # print(active_tasks)
+    # for task in active_tasks:
+
+    #     print(f"Active task {task}")
 
 
 if __name__ == "__main__":

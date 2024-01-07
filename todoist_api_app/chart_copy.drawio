@@ -1,0 +1,88 @@
+<mxfile host="65bd71144e">
+    <diagram id="tJszx6Gl-No6UOS6jMcy" name="Chart">
+        <mxGraphModel dx="2276" dy="982" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="FmhOpoX-yID1eiWGU3ZW-1" value="Title" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#10739E;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=24" parent="1" vertex="1">
+                    <mxGeometry x="220" width="340" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7566067574" value="task2" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#326CAD;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontSize=12;strokeWidth=5;strokeColor=#ff0000;" vertex="1" parent="1">
+                    <mxGeometry y="360" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7566067822" value="task8" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#326CAD;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontSize=12;strokeWidth=5;strokeColor=#ffa500;" vertex="1" parent="1">
+                    <mxGeometry y="460" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="Olio-ohjelmointi1" value="Label 1" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#326CAD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=14;strokeWidth=0;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="-10" y="250" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7566067654" value="task4" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#0974ED;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontSize=12;strokeWidth=5;strokeColor=#3cb371;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="360" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7566067787" value="task7" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#0974ED;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontSize=12;strokeWidth=5;strokeColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="460" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7566068049" value="task19" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#0974ED;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontSize=12;strokeWidth=5;strokeColor=#ffa500;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="560" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7566068070" value="task20" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#0974ED;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontSize=12;strokeWidth=5;strokeColor=#ffa500;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="660" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="Projektisalkun johtaminen2" value="Label 2" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#0974ED;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=14;strokeWidth=0;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="140" y="250" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7566067846" value="task9" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#987639;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontSize=12;strokeWidth=5;strokeColor=#3cb371;" vertex="1" parent="1">
+                    <mxGeometry x="300" y="360" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7566068006" value="task17" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#987639;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontSize=12;strokeWidth=5;strokeColor=#ffa500;" vertex="1" parent="1">
+                    <mxGeometry x="300" y="460" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="Luova ongelmaratkaisu3" value="Label 3" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#987639;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=14;strokeWidth=0;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="290" y="250" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7566067919" value="task12" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#3B536E;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontSize=12;strokeWidth=5;strokeColor=#ff0000;" vertex="1" parent="1">
+                    <mxGeometry x="450" y="360" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="Lean menetelmät4" value="Label 4" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#3B536E;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=14;strokeWidth=0;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="440" y="250" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7566068025" value="task18" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#ED9B09;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontSize=12;strokeWidth=5;strokeColor=#ffa500;" vertex="1" parent="1">
+                    <mxGeometry x="600" y="360" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="Algoritmit5" value="Label 5" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#ED9B09;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=14;strokeWidth=0;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="590" y="250" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="143855203" value="Section 1" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#F007DA;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=14;strokeWidth=0;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="290" y="120" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7566067730" value="task5" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#326CAD;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontSize=12;strokeWidth=5;strokeColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="800" y="360" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7566067863" value="task10" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#326CAD;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontSize=12;strokeWidth=5;strokeColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="800" y="460" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7566067965" value="task14" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#326CAD;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontSize=12;strokeWidth=5;strokeColor=#ff0000;" vertex="1" parent="1">
+                    <mxGeometry x="800" y="560" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="Lean menetelmät6" value="Label 1" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#326CAD;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=14;strokeWidth=0;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="790" y="250" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7566067896" value="task11" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#0974ED;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontSize=12;strokeWidth=5;strokeColor=#3cb371;" vertex="1" parent="1">
+                    <mxGeometry x="950" y="360" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7566067974" value="task15" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#0974ED;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontSize=12;strokeWidth=5;strokeColor=#ff0000;" vertex="1" parent="1">
+                    <mxGeometry x="950" y="460" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7566067991" value="task16" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#0974ED;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontSize=12;strokeWidth=5;strokeColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="950" y="560" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="Olio-ohjelmointi7" value="Label 2" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#0974ED;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=14;strokeWidth=0;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="940" y="250" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="143855173" value="Section 2" style="whiteSpace=wrap;rounded=1;shadow=1;fillColor=#4AF008;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=14;strokeWidth=0;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="940" y="120" width="160" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
