@@ -1,0 +1,11 @@
+content,description,order,priority,project_id,labels,due_date,section_id,parent_id,child_tasks
+Self-assessment,,1,2,Inbox,Data structures and algorithms,2024-01-14,Jamk,,
+1. Algorithm,,2,2,Inbox,Data structures and algorithms,2024-01-21,Jamk,,
+2. Arrays,,3,2,Inbox,Data structures and algorithms,2024-01-28,Jamk,,
+3. Array sorting,,4,2,Inbox,Data structures and algorithms,2024-02-04,Jamk,,
+4. Abstract datatypes,,5,2,Inbox,Data structures and algorithms,2024-02-11,Jamk,,
+5. Linked list,,6,2,Inbox,Data structures and algorithms,2024-02-18,Jamk,,
+6. Trees,,7,2,Inbox,Data structures and algorithms,2024-02-25,Jamk,,
+7. Graphs,,8,2,Inbox,Data structures and algorithms,2024-03-03,Jamk,,
+Final Self-assessment,,9,2,Inbox,Data structures and algorithms,2024-03-10,Jamk,,
+Optional Project,,10,2,Inbox,Data structures and algorithms,2024-03-17,Jamk,,

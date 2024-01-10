@@ -1,6 +1,6 @@
 # Todoist Task Adding Project
 
-Idea behind this project is to make it easier to plan your studies. You can add tasks to Todoist and then visualize them in a chart. 
+Idea behind this project is to make it easier to plan your studies. You can add tasks to Todoist and then visualize them in a chart. See how I use it myself in section [How I use this project](#how-i-use-this-project).
 
 This project provides a Python script for adding tasks to your [Todoist](https://todoist.com) account. Functions for adding tasks from csv file are located in the todoist.py file. See documentation of the file in [Todoist adding functions](#todoist-adding-functions) section.
 
@@ -78,3 +78,9 @@ I recommend to use [draw.io Visual Studio extension ](https://marketplace.visual
 
 - Python
 - [Poetry](https://python-poetry.org/docs/)
+
+## How I use this project
+
+I use this project to plan my studies in time block manner. You can read about time blocking [here](https://todoist.com/fi/productivity-methods/time-blocking).
+First I integrated Todois with Google Calendar, so I can see my tasks in my calendar. See how to do it [here](https://todoist.com/fi/help/articles/add-a-todoist-calendar-feed-pAk3tk). 
+After adding tasks in Todoist, due date of each task will be on sunday in one time block. From there I drag and drop tasks to the right day in Todoist and then allocate specific time for the task in Google Calendar.

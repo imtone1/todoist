@@ -1,0 +1,2 @@
+content,description,order,priority,project_id,labels,due_date,section_id,parent_id,child_tasks,duration_amount,duration_unit
+Testi duration,[School number](https://gitlab.labranet.jamk.fi/ttc8440/oo-programming/-/blob/main/tasks.md),1,2,Inbox,Olio-ohjelmointi,2024-01-14,Jamk,,,60,minute

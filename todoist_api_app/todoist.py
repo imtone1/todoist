@@ -2,11 +2,12 @@ from todoist_api_python.api import TodoistAPI
     #muuttujat
 from muuttujat import *
 import csv
+from datetime import datetime
 
 api_key = TodoistAPI(TODOIST_API_KEY)
 
 class Task:
-    def __init__(self, content=None, description=None, order=1, priority=1, project_id=None, labels=[], due_date=None, section_id=None, parent_id=None, due_lang="fi", child_tasks=None):
+    def __init__(self, content=None, description=None, order=1, priority=1, project_id=None, labels=[], due_date=None, section_id=None, parent_id=None, due_lang="fi", child_tasks=None,duration_amount=60,duration_unit="minute"):
         self.content = content
         self.description = description
         self.order = order
@@ -18,6 +19,9 @@ class Task:
         self.parent_id = parent_id
         self.due_lang=due_lang
         self.child_tasks=child_tasks
+        self.duration_amount=duration_amount
+        self.duration_unit=duration_unit
+        
 
 ######################################################################################################## API related functions
 def get_all_projects(api_key):
@@ -97,6 +101,14 @@ def add_new_task(api_key, task):
     """
 
     try:
+
+        # Converting string to a datetime object
+        due_date_obj = datetime.strptime(task.due_date, '%Y-%m-%d')
+
+        # Convertting the datetime object back to a string, this time including the time
+        due_datetime = due_date_obj.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+        print(f"Due datetime: {due_datetime}")
+
         added_task = api_key.add_task(
             content=task.content,
             description=task.description,
@@ -104,10 +116,13 @@ def add_new_task(api_key, task):
             priority=task.priority,
             project_id=task.project_id,
             labels=task.labels,
-            due_date=task.due_date,
+            due_datetime=due_datetime,
             section_id=task.section_id,
             parent_id=task.parent_id,
-            due_lang=task.due_lang
+            due_lang=task.due_lang,
+            duration=task.duration_amount,
+            duration_unit= task.duration_unit
+            
         )
         print(f"Added task: {added_task}")
         return added_task
@@ -162,7 +177,9 @@ def read_tasks_from_csv(file_path):
                 due_date=row['due_date'] if row['due_date'] else None,
                 section_id=row['section_id'] if row['section_id'] else None,
                 parent_id=row['parent_id'] if row['parent_id'] else None,
-                child_tasks=row['child_tasks'] if row['child_tasks'] else None
+                child_tasks=row['child_tasks'] if row['child_tasks'] else None,
+                duration_amount=row['duration_amount'] if 'duration_amount' in row and row['duration_amount'] else 60,
+                duration_unit=row['duration_unit'] if 'duration_unit' in row and row['duration_unit'] else "minute"
                 )
             tasks.append(task)
     return tasks
@@ -185,42 +202,42 @@ def check_if_str(task_id):
 
 def main():
     # Adding tasks from csv file
-    # tasks = read_tasks_from_csv('./todoist_api/todoist_api_app/tasks_data.csv')
+    tasks = read_tasks_from_csv('./todoist_api/todoist_api_app/data/tasks_algorithm.csv')
 
-    # subtasks= read_tasks_from_csv('./todoist_api/todoist_api_app/subtasks_data.csv')
-    # projects=get_all_projects(api_key)
+    subtasks= read_tasks_from_csv('./todoist_api/todoist_api_app/data/test_task.csv')
+    projects=get_all_projects(api_key)
 
-    # for task in tasks:
-    #     #check if project_id is a string. Means that user has given a project name.
-    #     if check_if_str(task.project_id):
-    #         project_id = find_item_id(projects, task.project_id)
+    for task in tasks:
+        #check if project_id is a string. Means that user has given a project name.
+        if check_if_str(task.project_id):
+            project_id = find_item_id(projects, task.project_id)
 
-    #     else:
-    #         project_id = find_item_id(projects, "Inbox")
+        else:
+            project_id = find_item_id(projects, "Inbox")
        
-    #    #Get all sections in the project
-    #     sections=get_all_sections(api_key, project_id)
-    #     section_id = find_item_id(sections, task.section_id)
-    #     task.project_id = project_id
-    #     task.section_id = section_id
-    #     new_task=add_new_task(api_key, task)
-    #     new_task=new_task.id
-    #     print(f"new task id: {new_task}")
-    #     #does the task have subtasks
-    #     if check_if_str(task.child_tasks):
-    #         for subtask in subtasks:
-    #             if task.content==subtask.child_tasks:
-    #                 subtask.parent_id=new_task
-    #                 subtask.project_id=project_id
-    #                 subtask.section_id=section_id
-    #                 add_new_task(api_key, subtask)
+       #Get all sections in the project
+        sections=get_all_sections(api_key, project_id)
+        section_id = find_item_id(sections, task.section_id)
+        task.project_id = project_id
+        task.section_id = section_id
+        new_task=add_new_task(api_key, task)
+        new_task=new_task.id
+        print(f"new task id: {new_task}")
+        #does the task have subtasks
+        if check_if_str(task.child_tasks):
+            for subtask in subtasks:
+                if task.content==subtask.child_tasks:
+                    subtask.parent_id=new_task
+                    subtask.project_id=project_id
+                    subtask.section_id=section_id
+                    add_new_task(api_key, subtask)
     
     #Get all active tasks
-    active_tasks=get_all_active_tasks(api_key)
-    print(active_tasks)
-    for task in active_tasks:
-
-        print(f"Active task {task}")
+    # active_tasks=get_all_active_tasks(api_key)
+    # print(active_tasks)
+    # for task in active_tasks:
+    
+    #     print(f"Active task {task}")
 
 
 if __name__ == "__main__":

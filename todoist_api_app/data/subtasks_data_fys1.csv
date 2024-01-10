@@ -1,4 +1,4 @@
-content,description,order,priority,project_id,labels,due_date,section_id,parent_id,child_tasks
+content,description,order,priority,project_id,labels,due_date,section_id,parent_id,child_tasks,duration_amount,duration_unit
 Videot,,1,1,Inbox,Fys 1,2024-01-14,Jamk,,johdanto
 Harjoitustehtävät,,2,2,Inbox,Fys 1,2024-01-14,Jamk,,johdanto
 Kotitehtävät,,3,3,Inbox,Fys 1,2024-01-14,Jamk,,johdanto
